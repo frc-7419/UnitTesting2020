@@ -14,8 +14,9 @@ public class IntakeSub extends SubsystemBase{
     
     private VictorSPX victor;
 
-    public IntakeSub(){
-        victor = new VictorSPX(CanIds.intakeVictor.id);
+    public IntakeSub(VictorSPX victor){
+        this.victor = victor;
+        // victor = new VictorSPX(CanIds.intakeVictor.id);
         // victor.configFactoryDefault();
         Initers.initVictors(victor);
     }
