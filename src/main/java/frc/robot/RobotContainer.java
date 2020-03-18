@@ -30,7 +30,6 @@ import frc.robot.subsystems.shooter.RunHood;
 import frc.robot.subsystems.shooter.RunShooterLoader;
 import frc.robot.subsystems.shooter.ShooterSub;
 import frc.robot.subsystems.vision.LimelightSub;
-import frc.robot.subsystems.vision.TurnToTx;
 
 public class RobotContainer {
   
@@ -44,7 +43,6 @@ public class RobotContainer {
   private final ButtonBoard buttonBoard = new ButtonBoard();
   private final RevColorDistanceSub colorSensor = new RevColorDistanceSub();
   private final HoodSub hood = new HoodSub();
-  private final LimelightSub limelight = new LimelightSub();
 
   private final ArcadeDrive arcade = new ArcadeDrive(joystick, driveBase, 
   PowerConstants.DriveBaseLeftStraight.val, PowerConstants.DriveBaseRightTurn.val, 
