@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -21,7 +22,7 @@ public class IntakeSubTest{
         IntakeSub intakeMock = new IntakeSub(victor);
 
         // Assert
-        // assertEquals(true, shooter.servoRetracted);
+        assertEquals(false, intakeMock.getInverted());
 
     }
 }
