@@ -1,12 +1,15 @@
 package frc.robot;
 
 import java.util.function.BooleanSupplier;
+
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.team7419.PaddedXbox;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.Constants.CanIds;
 import frc.robot.subsystems.autos.MoveForwardThenShoot;
 import frc.robot.subsystems.buttons.ButtonBoard;
 import frc.robot.subsystems.climber.ClimberSub;
@@ -29,13 +32,12 @@ import frc.robot.subsystems.shooter.PercentOutput;
 import frc.robot.subsystems.shooter.RunHood;
 import frc.robot.subsystems.shooter.RunShooterLoader;
 import frc.robot.subsystems.shooter.ShooterSub;
-import frc.robot.subsystems.vision.LimelightSub;
 
 public class RobotContainer {
   
   private final DriveBaseSub driveBase = new DriveBaseSub();
   private final PaddedXbox joystick = new PaddedXbox();
-  private final IntakeSub intake = new IntakeSub();
+  private final IntakeSub intake = new IntakeSub(new VictorSPX(CanIds.intakeVictor.id));
   private final LoaderSub loader = new LoaderSub();
   private final RevolverSub revolver = new RevolverSub();
   private final ShooterSub shooter = new ShooterSub();

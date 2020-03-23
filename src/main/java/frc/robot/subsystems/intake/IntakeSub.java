@@ -14,14 +14,19 @@ public class IntakeSub extends SubsystemBase{
     
     private VictorSPX victor;
 
-    public IntakeSub(){
-        victor = new VictorSPX(CanIds.intakeVictor.id);
+    public IntakeSub(VictorSPX victor){
+        this.victor = victor;
+        // victor = new VictorSPX(CanIds.intakeVictor.id);
         // victor.configFactoryDefault();
         Initers.initVictors(victor);
+        victor.setInverted(false);
     }
 
     @Override
     public void periodic(){}
 
     public void setPower(double power){victor.set(ControlMode.PercentOutput, power);}
+
+    // completely trivial, only for a unit test
+    public boolean getInverted(){return victor.getInverted();}
 }
