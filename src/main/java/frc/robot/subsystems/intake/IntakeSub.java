@@ -28,4 +28,6 @@ public class IntakeSub extends SubsystemBase{
 
     // completely trivial, only for a unit test
     public boolean getInverted(){return victor.getInverted();}
+
+    public double getPower(){return victor.getMotorOutputPercent();}
 }
