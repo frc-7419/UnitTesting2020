@@ -1,9 +1,9 @@
 package frc.robot.subsystems;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.Mockito.mock;
-
+import static org.mockito.Mockito.verify;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -16,11 +16,13 @@ import org.mockito.InjectMocks;
 
 public class MockVictorIntakeTest{
 
-     // Arrange
      VictorSPX victor = mock(VictorSPX.class);
 
      @InjectMocks
      IntakeSub intakeMock = new IntakeSub(victor);
+
+     RunIntake runIntake = new RunIntake(intakeMock, .5);
+
     
     @Test
     public void testConstructor() {
@@ -30,7 +32,6 @@ public class MockVictorIntakeTest{
     @Test
     public void runIntakeTest(){
         double executePower = 10;
-        RunIntake runIntake = new RunIntake(intakeMock, .5);
         for(int i = 0; i < 5; i++){
             runIntake.execute();
             executePower = intakeMock.getPower();
@@ -38,5 +39,11 @@ public class MockVictorIntakeTest{
         runIntake.end(false);
         assertEquals(true, executePower == 0.5);
         assertEquals(true, intakeMock.getPower() == 0);
+    }
+
+    @Test
+    public void setControlModeCalled(){
+        runIntake.execute();
+        verify(victor).set(ControlMode.PercentOutput, .5);
     }
 }

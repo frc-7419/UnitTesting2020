@@ -35,4 +35,5 @@ public class IntakeSub extends SubsystemBase{
     public boolean getInverted(){return victor.getInverted();}
 
     public double getPower(){return power;}
+
 }
