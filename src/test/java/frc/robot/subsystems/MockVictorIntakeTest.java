@@ -50,7 +50,7 @@ public class MockVictorIntakeTest{
     public void forwardsGoesForwards(){
         runIntake.execute();
         assertEquals(false, intakeMock.getInverted());
-        verify(intakeMock.getPower() < 0);
+        verify(intakeMock.getPower() > 0);
     }
 
     @Test
