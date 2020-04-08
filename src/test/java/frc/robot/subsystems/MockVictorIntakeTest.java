@@ -50,13 +50,13 @@ public class MockVictorIntakeTest{
     public void forwardsGoesForwards(){
         runIntake.execute();
         assertEquals(false, intakeMock.getInverted());
-        verify(intakeMock.getPower() > 0);
+        assertEquals(true, intakeMock.getPower() > 0);
     }
 
     @Test
     public void backwardsGoesBackwards(){
         runIntake.execute();
         assertEquals(true, intakeMock.getInverted());
-        verify(intakeMock.getPower() < 0);
+        assertEquals(true, intakeMock.getPower() < 0);
     }
 }

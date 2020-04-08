@@ -20,7 +20,7 @@ public class IntakeSub extends SubsystemBase{
         // victor = new VictorSPX(CanIds.intakeVictor.id);
         // victor.configFactoryDefault();
         Initers.initVictors(victor);
-        victor.setInverted(false);
+        victor.setInverted(true);
     }
 
     @Override
