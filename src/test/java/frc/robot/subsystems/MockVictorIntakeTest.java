@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -22,7 +21,6 @@ public class MockVictorIntakeTest{
      IntakeSub intakeMock = new IntakeSub(victor);
 
      RunIntake runIntake = new RunIntake(intakeMock, .5);
-
     
     @Test
     public void testConstructor() {
