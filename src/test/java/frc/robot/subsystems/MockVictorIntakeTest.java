@@ -27,6 +27,10 @@ public class MockVictorIntakeTest{
         assertEquals(false, intakeMock.getInverted());
     }
 
+    /**
+     * verify that execute() sets intake power to param, and end()
+     * turns the intake off
+     */
     @Test
     public void runIntakeTest(){
         double executePower = 10;
