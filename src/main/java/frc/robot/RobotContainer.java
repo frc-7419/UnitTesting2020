@@ -18,14 +18,7 @@ import frc.robot.subsystems.drive.ArcadeDrive;
 import frc.robot.subsystems.drive.DriveBaseSub;
 import frc.robot.subsystems.drive.StraightWithMotionMagic;
 import frc.robot.subsystems.drive.ToggleSlowMode;
-import frc.robot.subsystems.intake.IntakeDefault;
-import frc.robot.subsystems.intake.IntakeSub;
-import frc.robot.subsystems.intake.LoaderSub;
-import frc.robot.subsystems.intake.RevolverSub;
-import frc.robot.subsystems.intake.RevolverToTape;
-import frc.robot.subsystems.intake.RunIntake;
-import frc.robot.subsystems.intake.RunLoader;
-import frc.robot.subsystems.intake.RunRevolver;
+import frc.robot.subsystems.intake.*;
 import frc.robot.subsystems.sensors.RevColorDistanceSub;
 import frc.robot.subsystems.shooter.HoodSub;
 import frc.robot.subsystems.shooter.PercentOutput;
@@ -112,7 +105,7 @@ public class RobotContainer {
     new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonY.value)
     .whileHeld(new PercentOutput(shooter, PowerConstants.ShooterUp.val, false));
 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonB.value)
+    joystick.getB()
     .whenPressed(new StraightWithMotionMagic(driveBase, -9)
     .andThen(new InstantCommand(driveBase::coast, driveBase)));
 

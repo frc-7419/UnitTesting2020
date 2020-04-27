@@ -1,6 +1,7 @@
 package com.team7419;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class PaddedXbox extends XboxController{
 
@@ -11,6 +12,7 @@ public class PaddedXbox extends XboxController{
     public enum F310Map{
         //Input Map
         f310Main(0),
+        
         f310Secondary(1),
         
         //F310 MAP
@@ -83,8 +85,9 @@ public class PaddedXbox extends XboxController{
 		return out;
 	}
 	
-	public boolean getB() {
-		return getRawButton(F310Map.kGamepadButtonB.value);
+	public JoystickButton getB() {
+        JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonB.value);
+		return button;
 	}
 
 	
