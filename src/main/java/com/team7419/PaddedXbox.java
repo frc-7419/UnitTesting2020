@@ -84,15 +84,16 @@ public class PaddedXbox extends XboxController{
 		}
 		return out;
 	}
-	
-	public JoystickButton getB() {
-        JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonB.value);
+
+
+	public JoystickButton getA() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonA.value);
 		return button;
 	}
 
-	
-	public boolean getA() {
-		return getRawButton(F310Map.kGamepadButtonA.value);
+	public JoystickButton getB() {
+        JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonB.value);
+		return button;
 	}
 	
 	@Override

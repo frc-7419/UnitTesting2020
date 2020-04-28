@@ -99,7 +99,7 @@ public class RobotContainer {
     new POVButton(joystick, 90).whileHeld(new RunClimber(climber, PowerConstants.ClimberJohann.val, true)); 
     new POVButton(joystick, 270).whileHeld(new RunClimber(climber, PowerConstants.ClimberJohann.val, false));
 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonA.value)
+    joystick.getA()
     .whileHeld(new PercentOutput(shooter, PowerConstants.ShooterDown.val, true));
 
     new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonY.value)
