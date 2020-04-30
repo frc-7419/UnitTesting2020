@@ -1,5 +1,6 @@
 package com.team7419;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -96,14 +97,24 @@ public class PaddedXbox extends XboxController{
 		return button;
 	}
 	
-	@Override
-	public boolean getYButton() {
-		return getRawButton(F310Map.kGamepadButtonY.value);
+	/**
+	 * I know the name is dumb, but the super class XboxController has getY and getYButton
+	 * already taken with different types, "double" and "boolean" so... what other choice did I have!?
+	 * @return Y button value
+	 */
+	public JoystickButton getYButtonValue() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonY.value);
+		return button;
 	}
 	
-	@Override
-	public boolean getXButton() {
-		return getRawButton(F310Map.kGamepadButtonX.value);
+	/**
+	 * I know the name is dumb, but the super class XboxController has getX and getXButton
+	 * already taken with different types, "double" and "boolean" so... what other choice did I have!?
+	 * @return X button value
+	 */
+	public JoystickButton getXButtonValue() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonX.value);
+		return button;
 	}
 
 	public boolean getRightShoulder(){

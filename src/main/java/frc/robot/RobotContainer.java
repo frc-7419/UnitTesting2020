@@ -80,12 +80,12 @@ public class RobotContainer {
   }
 
   /**
-   * rule of thumb: don't change manual button bindings. 
+   * rule of thumb: don't change manual button bindings.
    */
 
   private void xboxControllerButtonBindings() {
     
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonX.value)
+    joystick.getXButtonValue()
     .whenPressed(new ToggleSlowMode(driveBase));
 
     new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonShoulderL.value)
@@ -102,7 +102,7 @@ public class RobotContainer {
     joystick.getA()
     .whileHeld(new PercentOutput(shooter, PowerConstants.ShooterDown.val, true));
 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonY.value)
+    joystick.getYButtonValue()
     .whileHeld(new PercentOutput(shooter, PowerConstants.ShooterUp.val, false));
 
     joystick.getB()
