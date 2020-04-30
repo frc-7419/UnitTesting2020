@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.intake.IntakeSub;
 import frc.robot.subsystems.intake.RunIntake;
 
@@ -15,12 +16,17 @@ import org.mockito.InjectMocks;
 
 public class Week2MovingVictor{
 
-     VictorSPX victor = mock(VictorSPX.class);
+    //  RobotContainer robotContainer = mock(RobotContainer.class);
+    // RobotContainer robotContainer = new RobotContainer();
 
-     @InjectMocks
-     IntakeSub intakeMock = new IntakeSub(victor);
+     @Test
+     public void checkGetMethod(){
+        // VictorSPX victor = robotContainer.getVictor();
+        // assertEquals(VictorSPX.class, victor);
+     }
 
-     RunIntake runIntake = new RunIntake(intakeMock, .5);
-    
-    
+     @Test
+     public void checkAutoPeriodicMoves(){
+         
+     }
 }
