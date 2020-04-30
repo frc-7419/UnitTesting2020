@@ -13,7 +13,7 @@ import frc.robot.subsystems.intake.RunIntake;
 import org.junit.*;
 import org.mockito.InjectMocks;
 
-public class MockVictorIntakeTest{
+public class Week2MovingVictor{
 
      VictorSPX victor = mock(VictorSPX.class);
 
@@ -22,19 +22,5 @@ public class MockVictorIntakeTest{
 
      RunIntake runIntake = new RunIntake(intakeMock, .5);
     
-    @Test
-    public void testConstructor() {
-        assertEquals(false, intakeMock.getInverted());
-    }
-
-    public void turnsOffWhenCommandEnds(){
-        runIntake.end(false);
-        verify(victor).set(ControlMode.PercentOutput, 0);
-    }
-
-    @Test
-    public void checkVictorRunning(){
-        runIntake.execute();
-        verify(victor).set(ControlMode.PercentOutput, .5);
-    }
+    
 }

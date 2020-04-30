@@ -61,6 +61,8 @@ public class RobotContainer {
   private BooleanSupplier bsExternalDownJoystick = () -> buttonBoard.getJoystickY() == -1;
   private Trigger externalDownJoystick = new Trigger(bsExternalDownJoystick);
 
+  private final VictorSPX testVictor = new VictorSPX(999);
+
   /**
    * before this gets merged back into the dev branch, make sure that xboxControllerButtonBindings()
    * and buttonBoardBindings() are the only methods called in this constructor
@@ -171,4 +173,5 @@ public class RobotContainer {
 
   public Command getAutoCommand(){return defaultAuto;}
 
+  public VictorSPX getVictor(){return testVictor;}
 }
