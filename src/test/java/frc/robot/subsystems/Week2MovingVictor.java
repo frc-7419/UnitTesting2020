@@ -16,6 +16,7 @@ public class Week2MovingVictor{
      @Test
      public void checkGetMethod(){
         RobotContainer robotContainer = mock(RobotContainer.class);
+         // RobotContainer robotContainer = new RobotContainer();
         VictorSPX victor = robotContainer.getVictor();
         assertEquals(robotContainer.testVictor, victor);
      }
