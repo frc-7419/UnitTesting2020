@@ -27,8 +27,6 @@ import frc.robot.subsystems.shooter.RunShooterLoader;
 import frc.robot.subsystems.shooter.ShooterSub;
 
 public class RobotContainer {
-
-  // comment
   
   private final DriveBaseSub driveBase = new DriveBaseSub();
   private final PaddedXbox joystick = new PaddedXbox();
