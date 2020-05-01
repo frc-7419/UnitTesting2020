@@ -1,8 +1,11 @@
 package com.team7419;
 
-import edu.wpi.first.wpilibj.Joystick;
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.subsystems.buttons.ButtonBoard;
 
 public class PaddedXbox extends XboxController{
 
@@ -117,15 +120,25 @@ public class PaddedXbox extends XboxController{
 		return button;
 	}
 
-	public boolean getRightShoulder(){
-		return getRawButton(F310Map.kGamepadButtonShoulderR.value);
+	public JoystickButton getRightShoulder() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonShoulderR.value);
+		return button;
 	}
 
-	public boolean getLeftShoulder(){
-		return getRawButton(F310Map.kGamepadButtonShoulderL.value);
+	public JoystickButton getLeftShoulder() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonShoulderL.value);
+		return button;
 	}
 
+	private final ButtonBoard buttonBoard = new ButtonBoard();
+	public boolean getExternalRightJoystick() {
+		BooleanSupplier bsExternalRightJoystick = () -> buttonBoard.getJoystickX() == 1;
+		Trigger externalRightJoystick = new Trigger(bsExternalRightJoystick);
+		return bsExternalRightJoystick.getAsBoolean();
+	}
+	
 	public int getDpad(){
 		return getPOV();
 	}
+
 }

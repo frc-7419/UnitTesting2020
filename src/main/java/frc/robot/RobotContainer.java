@@ -49,6 +49,10 @@ public class RobotContainer {
   private final MoveForwardThenShoot defaultAuto = 
   new MoveForwardThenShoot(driveBase, shooter, revolver, loader);
 
+  // new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonShoulderR.value)
+  // private BooleanSupplier bsExternalRightJoystick = () -> buttonBoard.getJoystickX() == 1;
+  // private Trigger externalRightJoystick = new Trigger(bsExternalRightJoystick);
+
   private BooleanSupplier bsExternalRightJoystick = () -> buttonBoard.getJoystickX() == 1;
   private Trigger externalRightJoystick = new Trigger(bsExternalRightJoystick);
 
@@ -82,15 +86,14 @@ public class RobotContainer {
   /**
    * rule of thumb: don't change manual button bindings.
    */
-
   private void xboxControllerButtonBindings() {
     
     joystick.getXButtonValue()
     .whenPressed(new ToggleSlowMode(driveBase));
 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonShoulderL.value)
+    joystick.getLeftShoulder()
     .whileHeld(new RunRevolver(revolver, PowerConstants.RevolverJohann.val, false)); 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonShoulderR.value)
+    joystick.getRightShoulder()
     .whileHeld(new RunRevolver(revolver, PowerConstants.RevolverJohann.val, true)); 
 
     new POVButton(joystick, 0).whileHeld(new RunLoader(loader, PowerConstants.LoaderJohann.val, true)); 
@@ -111,6 +114,9 @@ public class RobotContainer {
 
   }
 
+  /**
+   * these button bindings are part of the manual ones (i.e. rule of thumb: don't touch them)
+   */
   public void buttonBoardBindings(){
 
     // 1: revolver to tape
