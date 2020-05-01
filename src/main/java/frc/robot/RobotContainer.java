@@ -27,6 +27,8 @@ import frc.robot.subsystems.shooter.RunShooterLoader;
 import frc.robot.subsystems.shooter.ShooterSub;
 
 public class RobotContainer {
+
+  // comment
   
   private final DriveBaseSub driveBase = new DriveBaseSub();
   private final PaddedXbox joystick = new PaddedXbox();
@@ -61,7 +63,7 @@ public class RobotContainer {
   private BooleanSupplier bsExternalDownJoystick = () -> buttonBoard.getJoystickY() == -1;
   private Trigger externalDownJoystick = new Trigger(bsExternalDownJoystick);
 
-  public VictorSPX testVictor = new VictorSPX(999);
+  public VictorSPX testVictor = new VictorSPX(9);
 
   /**
    * before this gets merged back into the dev branch, make sure that xboxControllerButtonBindings()
