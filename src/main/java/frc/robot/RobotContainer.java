@@ -63,6 +63,8 @@ public class RobotContainer {
 
   public VictorSPX testVictor = new VictorSPX(999);
 
+  public void getHenry(){}
+
   /**
    * before this gets merged back into the dev branch, make sure that xboxControllerButtonBindings()
    * and buttonBoardBindings() are the only methods called in this constructor
@@ -173,5 +175,5 @@ public class RobotContainer {
 
   public Command getAutoCommand(){return defaultAuto;}
 
-  public VictorSPX getVictor(){return testVictor;}
+  public VictorSPX getTestVictor(){return testVictor;}
 }
