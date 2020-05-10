@@ -1,6 +1,9 @@
 package frc.robot;
 
+// import static org.mockito.Mockito.mock;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -10,9 +13,16 @@ public class Robot extends TimedRobot {
 
   private RobotContainer robotContainer;
   
+  public Robot(){
+    this.robotContainer = new RobotContainer();
+  }
+
+  public Robot(RobotContainer robotContainer){
+    this.robotContainer = robotContainer;
+  }
+
   @Override
   public void robotInit() {
-    robotContainer = new RobotContainer();
   }
 
 

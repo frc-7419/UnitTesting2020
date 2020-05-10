@@ -27,6 +27,8 @@ import frc.robot.subsystems.shooter.RunShooterLoader;
 import frc.robot.subsystems.shooter.ShooterSub;
 
 public class RobotContainer {
+
+  private VictorSPX victor = new VictorSPX(9);
   
   private final DriveBaseSub driveBase = new DriveBaseSub();
   private final PaddedXbox joystick = new PaddedXbox();
@@ -61,8 +63,6 @@ public class RobotContainer {
   private BooleanSupplier bsExternalDownJoystick = () -> buttonBoard.getJoystickY() == -1;
   private Trigger externalDownJoystick = new Trigger(bsExternalDownJoystick);
 
-  public VictorSPX testVictor = new VictorSPX(999);
-
   public void getHenry(){}
 
   /**
@@ -73,6 +73,13 @@ public class RobotContainer {
     xboxControllerButtonBindings();
     buttonBoardBindings();    
     // codeTestButtonBindings();
+  }
+
+  /**
+   * for unit testing
+   */
+  public RobotContainer(VictorSPX victor){
+    this.victor = victor;
   }
 
   /** 
@@ -175,5 +182,5 @@ public class RobotContainer {
 
   public Command getAutoCommand(){return defaultAuto;}
 
-  public VictorSPX getTestVictor(){return testVictor;}
+  public VictorSPX getTestVictor(){return victor;}
 }
