@@ -134,9 +134,20 @@ public class PaddedXbox extends XboxController{
 		return getPOV();
 	}
 
-	// ----------------------- BELOW IS PADDED BUTTON BOARD -------------------------------
+	// ----------------------- BELOW IS PADDED BUTTON BOARD CODE -------------------------------
 	private final ButtonBoard buttonBoard = new ButtonBoard();
 
+
+	public BooleanSupplier bsJoystickShortener(BooleanSupplier booleanSupplier, int x){
+		booleanSupplier = () -> buttonBoard.getJoystickX() == x;
+		return booleanSupplier;
+	}
+
+	public Trigger triggerJoystickShortener(Trigger trigger, BooleanSupplier booleanSupplier){
+		trigger = new Trigger(booleanSupplier);
+		return trigger;
+	}
+	
 	public Trigger getExternalRightJoystick(){
 		BooleanSupplier bsExternalRightJoystick = () -> buttonBoard.getJoystickX() == 1;
 		Trigger externalRightJoystick = new Trigger(bsExternalRightJoystick);
