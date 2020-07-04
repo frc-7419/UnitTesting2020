@@ -152,12 +152,20 @@ public class RobotContainer {
     .whenReleased(new InstantCommand(revolver::unstuckMode, revolver));
 
     // run revolver on external joystick x axis
-    joystick.triggerJoystickShortener(externalRightJoystick, joystick.bsJoystickShortener(bsExternalRightJoystick, 1)).whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, false));
-    joystick.triggerJoystickShortener(externalLeftJoystick, joystick.bsJoystickShortener(bsExternalLeftJoystick, -1)).whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, true));
+    joystick.triggerJoystickShortener(externalRightJoystick, 
+    joystick.bsJoystickShortener(bsExternalRightJoystick, 1))
+    .whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, false));
+    joystick.triggerJoystickShortener(externalLeftJoystick, 
+    joystick.bsJoystickShortener(bsExternalLeftJoystick, -1))
+    .whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, true));
 
     // run intake on external joystick y axis
-    joystick.triggerJoystickShortener(externalUpJoystick, joystick.bsJoystickShortener(bsExternalUpJoystick, 1)).whileActiveOnce(new RunIntake(intake, PowerConstants.IntakeOperator.val));
-    joystick.triggerJoystickShortener(externalDownJoystick, joystick.bsJoystickShortener(bsExternalDownJoystick, -1)).whileActiveOnce(new RunIntake(intake, -PowerConstants.IntakeOperator.val));
+    joystick.triggerJoystickShortener(externalUpJoystick, 
+    joystick.bsJoystickShortener(bsExternalUpJoystick, 1))
+    .whileActiveOnce(new RunIntake(intake, PowerConstants.IntakeOperator.val));
+    joystick.triggerJoystickShortener(externalDownJoystick, 
+    joystick.bsJoystickShortener(bsExternalDownJoystick, -1))
+    .whileActiveOnce(new RunIntake(intake, -PowerConstants.IntakeOperator.val));
   }
 
   public void setDefaultCommands(){
