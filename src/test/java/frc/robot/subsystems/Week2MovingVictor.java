@@ -1,27 +1,27 @@
-package frc.robot.subsystems;
+// package frc.robot.subsystems;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+// import static org.junit.Assert.assertEquals;
+// import static org.mockito.Mockito.mock;
+// import static org.mockito.Mockito.verify;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+// import com.ctre.phoenix.motorcontrol.ControlMode;
+// import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import frc.robot.RobotContainer;
+// import frc.robot.RobotContainer;
 
-import org.junit.*;
+// import org.junit.*;
 
-public class Week2MovingVictor{
+// public class Week2MovingVictor{
 
-     @Test
-     public void checkGetMethod(){
-        RobotContainer robotContainer = mock(RobotContainer.class);
-        VictorSPX victor = robotContainer.getVictor();
-        assertEquals(robotContainer.testVictor, victor);
-     }
+//      @Test
+//      public void checkGetMethod(){
+//         RobotContainer robotContainer = mock(RobotContainer.class);
+//         VictorSPX victor = robotContainer.getVictor();
+//         assertEquals(robotContainer.testVictor, victor);
+//      }
 
-     @Test
-     public void checkAutoPeriodicMoves(){
+//      @Test
+//      public void checkAutoPeriodicMoves(){
          
-     }
-}
+//      }
+// }
