@@ -27,20 +27,13 @@ public class MockVictorIntakeTest{
         assertEquals(false, intakeMock.getInverted());
     }
 
-    @Test
-    public void runIntakeTest(){
-        double executePower = 10;
-        for(int i = 0; i < 5; i++){
-            runIntake.execute();
-            executePower = intakeMock.getPower();
-        }
+    public void turnsOffWhenCommandEnds(){
         runIntake.end(false);
-        assertEquals(true, executePower == 0.5);
-        assertEquals(true, intakeMock.getPower() == 0);
+        verify(victor).set(ControlMode.PercentOutput, 0);
     }
 
     @Test
-    public void setControlModeCalled(){
+    public void checkVictorRunning(){
         runIntake.execute();
         verify(victor).set(ControlMode.PercentOutput, .5);
     }

@@ -18,14 +18,7 @@ import frc.robot.subsystems.drive.ArcadeDrive;
 import frc.robot.subsystems.drive.DriveBaseSub;
 import frc.robot.subsystems.drive.StraightWithMotionMagic;
 import frc.robot.subsystems.drive.ToggleSlowMode;
-import frc.robot.subsystems.intake.IntakeDefault;
-import frc.robot.subsystems.intake.IntakeSub;
-import frc.robot.subsystems.intake.LoaderSub;
-import frc.robot.subsystems.intake.RevolverSub;
-import frc.robot.subsystems.intake.RevolverToTape;
-import frc.robot.subsystems.intake.RunIntake;
-import frc.robot.subsystems.intake.RunLoader;
-import frc.robot.subsystems.intake.RunRevolver;
+import frc.robot.subsystems.intake.*;
 import frc.robot.subsystems.sensors.RevColorDistanceSub;
 import frc.robot.subsystems.shooter.HoodSub;
 import frc.robot.subsystems.shooter.PercentOutput;
@@ -56,18 +49,6 @@ public class RobotContainer {
   private final MoveForwardThenShoot defaultAuto = 
   new MoveForwardThenShoot(driveBase, shooter, revolver, loader);
 
-  private BooleanSupplier bsExternalRightJoystick = () -> buttonBoard.getJoystickX() == 1;
-  private Trigger externalRightJoystick = new Trigger(bsExternalRightJoystick);
-
-  private BooleanSupplier bsExternalLeftJoystick = () -> buttonBoard.getJoystickX() == -1;
-  private Trigger externalLeftJoystick = new Trigger(bsExternalLeftJoystick);
-
-  private BooleanSupplier bsExternalUpJoystick = () -> buttonBoard.getJoystickY() == 1;
-  private Trigger externalUpJoystick = new Trigger(bsExternalUpJoystick);
-
-  private BooleanSupplier bsExternalDownJoystick = () -> buttonBoard.getJoystickY() == -1;
-  private Trigger externalDownJoystick = new Trigger(bsExternalDownJoystick);
-
   /**
    * before this gets merged back into the dev branch, make sure that xboxControllerButtonBindings()
    * and buttonBoardBindings() are the only methods called in this constructor
@@ -87,17 +68,16 @@ public class RobotContainer {
   }
 
   /**
-   * rule of thumb: don't change manual button bindings. 
+   * rule of thumb: don't change manual button bindings.
    */
-
   private void xboxControllerButtonBindings() {
     
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonX.value)
+    joystick.getXButtonValue()
     .whenPressed(new ToggleSlowMode(driveBase));
 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonShoulderL.value)
+    joystick.getLeftShoulder()
     .whileHeld(new RunRevolver(revolver, PowerConstants.RevolverJohann.val, false)); 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonShoulderR.value)
+    joystick.getRightShoulder()
     .whileHeld(new RunRevolver(revolver, PowerConstants.RevolverJohann.val, true)); 
 
     new POVButton(joystick, 0).whileHeld(new RunLoader(loader, PowerConstants.LoaderJohann.val, true)); 
@@ -106,18 +86,21 @@ public class RobotContainer {
     new POVButton(joystick, 90).whileHeld(new RunClimber(climber, PowerConstants.ClimberJohann.val, true)); 
     new POVButton(joystick, 270).whileHeld(new RunClimber(climber, PowerConstants.ClimberJohann.val, false));
 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonA.value)
+    joystick.getA()
     .whileHeld(new PercentOutput(shooter, PowerConstants.ShooterDown.val, true));
 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonY.value)
+    joystick.getYButtonValue()
     .whileHeld(new PercentOutput(shooter, PowerConstants.ShooterUp.val, false));
 
-    new JoystickButton(joystick, PaddedXbox.F310Map.kGamepadButtonB.value)
+    joystick.getB()
     .whenPressed(new StraightWithMotionMagic(driveBase, -9)
     .andThen(new InstantCommand(driveBase::coast, driveBase)));
 
   }
 
+  /**
+   * these button bindings are part of the manual ones (i.e. rule of thumb: don't touch them)
+   */
   public void buttonBoardBindings(){
 
     // 1: revolver to tape
@@ -162,12 +145,12 @@ public class RobotContainer {
     .whenReleased(new InstantCommand(revolver::unstuckMode, revolver));
 
     // run revolver on external joystick x axis
-    externalRightJoystick.whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, false));
-    externalLeftJoystick.whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, true));
+    joystick.getExternalRightJoystick().whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, false));
+    joystick.getExternalLeftJoystick().whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, true));
 
     // run intake on external joystick y axis
-    externalDownJoystick.whileActiveOnce(new RunIntake(intake, -PowerConstants.IntakeOperator.val));
-    externalUpJoystick.whileActiveOnce(new RunIntake(intake, PowerConstants.IntakeOperator.val));
+    joystick.getExternalDownJoystick().whileActiveOnce(new RunIntake(intake, -PowerConstants.IntakeOperator.val));
+    joystick.getExternalUpJoystick().whileActiveOnce(new RunIntake(intake, PowerConstants.IntakeOperator.val));
   }
 
   public void setDefaultCommands(){

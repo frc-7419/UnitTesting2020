@@ -1,6 +1,11 @@
 package com.team7419;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.subsystems.buttons.ButtonBoard;
 
 public class PaddedXbox extends XboxController{
 
@@ -11,6 +16,7 @@ public class PaddedXbox extends XboxController{
     public enum F310Map{
         //Input Map
         f310Main(0),
+        
         f310Secondary(1),
         
         //F310 MAP
@@ -82,35 +88,77 @@ public class PaddedXbox extends XboxController{
 		}
 		return out;
 	}
-	
-	public boolean getB() {
-		return getRawButton(F310Map.kGamepadButtonB.value);
+
+
+	public JoystickButton getA() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonA.value);
+		return button;
 	}
 
-	
-	public boolean getA() {
-		return getRawButton(F310Map.kGamepadButtonA.value);
+	public JoystickButton getB() {
+        JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonB.value);
+		return button;
 	}
 	
-	@Override
-	public boolean getYButton() {
-		return getRawButton(F310Map.kGamepadButtonY.value);
+	/**
+	 * I know the name is dumb, but the super class XboxController has getY and getYButton
+	 * already taken with different types, "double" and "boolean" so... what other choice did I have!?
+	 * @return Y button value
+	 */
+	public JoystickButton getYButtonValue() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonY.value);
+		return button;
 	}
 	
-	@Override
-	public boolean getXButton() {
-		return getRawButton(F310Map.kGamepadButtonX.value);
+	/**
+	 * I know the name is dumb, but the super class XboxController has getX and getXButton
+	 * already taken with different types, "double" and "boolean" so... what other choice did I have!?
+	 * @return X button value
+	 */
+	public JoystickButton getXButtonValue() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonX.value);
+		return button;
 	}
 
-	public boolean getRightShoulder(){
-		return getRawButton(F310Map.kGamepadButtonShoulderR.value);
+	public JoystickButton getRightShoulder() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonShoulderR.value);
+		return button;
 	}
 
-	public boolean getLeftShoulder(){
-		return getRawButton(F310Map.kGamepadButtonShoulderL.value);
+	public JoystickButton getLeftShoulder() {
+		JoystickButton button = new JoystickButton(this, F310Map.kGamepadButtonShoulderL.value);
+		return button;
 	}
 
 	public int getDpad(){
 		return getPOV();
 	}
+
+	// ----------------------- BELOW IS PADDED BUTTON BOARD -------------------------------
+	private final ButtonBoard buttonBoard = new ButtonBoard();
+
+	public Trigger getExternalRightJoystick(){
+		BooleanSupplier bsExternalRightJoystick = () -> buttonBoard.getJoystickX() == 1;
+		Trigger externalRightJoystick = new Trigger(bsExternalRightJoystick);
+		return externalRightJoystick;
+	}
+	
+	public Trigger getExternalLeftJoystick(){
+		BooleanSupplier bsExternalLeftJoystick = () -> buttonBoard.getJoystickX() == -1;
+		Trigger externalLeftJoystick = new Trigger(bsExternalLeftJoystick);
+		return externalLeftJoystick;
+	}
+
+	public Trigger getExternalUpJoystick(){
+		BooleanSupplier bsExternalUpJoystick = () -> buttonBoard.getJoystickY() == 1;
+		Trigger externalUpJoystick = new Trigger(bsExternalUpJoystick);
+		return externalUpJoystick;
+	}
+
+	public Trigger getExternalDownJoystick(){
+		BooleanSupplier bsExternalDownJoystick = () -> buttonBoard.getJoystickY() == -1;
+		Trigger externalDownJoystick = new Trigger(bsExternalDownJoystick);	  
+		return externalDownJoystick;
+	}
+
 }
