@@ -130,15 +130,35 @@ public class PaddedXbox extends XboxController{
 		return button;
 	}
 
-	private final ButtonBoard buttonBoard = new ButtonBoard();
-	public boolean getExternalRightJoystick() {
-		BooleanSupplier bsExternalRightJoystick = () -> buttonBoard.getJoystickX() == 1;
-		Trigger externalRightJoystick = new Trigger(bsExternalRightJoystick);
-		return bsExternalRightJoystick.getAsBoolean();
-	}
-	
 	public int getDpad(){
 		return getPOV();
+	}
+
+	// ----------------------- BELOW IS PADDED BUTTON BOARD -------------------------------
+	private final ButtonBoard buttonBoard = new ButtonBoard();
+
+	public Trigger getExternalRightJoystick(){
+		BooleanSupplier bsExternalRightJoystick = () -> buttonBoard.getJoystickX() == 1;
+		Trigger externalRightJoystick = new Trigger(bsExternalRightJoystick);
+		return externalRightJoystick;
+	}
+	
+	public Trigger getExternalLeftJoystick(){
+		BooleanSupplier bsExternalLeftJoystick = () -> buttonBoard.getJoystickX() == -1;
+		Trigger externalLeftJoystick = new Trigger(bsExternalLeftJoystick);
+		return externalLeftJoystick;
+	}
+
+	public Trigger getExternalUpJoystick(){
+		BooleanSupplier bsExternalUpJoystick = () -> buttonBoard.getJoystickY() == 1;
+		Trigger externalUpJoystick = new Trigger(bsExternalUpJoystick);
+		return externalUpJoystick;
+	}
+
+	public Trigger getExternalDownJoystick(){
+		BooleanSupplier bsExternalDownJoystick = () -> buttonBoard.getJoystickY() == -1;
+		Trigger externalDownJoystick = new Trigger(bsExternalDownJoystick);	  
+		return externalDownJoystick;
 	}
 
 }
