@@ -16,7 +16,7 @@ public class ArcadeDrive extends CommandBase {
   private PaddedXbox joystick;
 
 /**
- * 
+ * Creates a new Arcade Drive
  * @param joystick
  * @param driveBase
  * @param kStraight
