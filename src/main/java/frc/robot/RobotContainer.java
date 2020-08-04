@@ -151,6 +151,7 @@ public class RobotContainer {
     // run intake on external joystick y axis
     joystick.getExternalUpJoystick().whileActiveOnce(new RunIntake(intake, PowerConstants.IntakeOperator.val));
     joystick.getExternalDownJoystick().whileActiveOnce(new RunIntake(intake, -PowerConstants.IntakeOperator.val));
+    
   }
 
   public void setDefaultCommands(){
