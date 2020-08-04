@@ -48,14 +48,7 @@ public class RobotContainer {
   // PowerConstants.RevolverWithIntake.val);
   private final MoveForwardThenShoot defaultAuto = 
   new MoveForwardThenShoot(driveBase, shooter, revolver, loader);
-  private BooleanSupplier bsExternalRightJoystick;
-  private Trigger externalRightJoystick;
-  private BooleanSupplier bsExternalLeftJoystick;
-  private Trigger externalLeftJoystick;
-  private BooleanSupplier bsExternalDownJoystick;
-  private Trigger externalDownJoystick;
-  private BooleanSupplier bsExternalUpJoystick;
-  private Trigger externalUpJoystick;
+  
   /**
    * before this gets merged back into the dev branch, make sure that xboxControllerButtonBindings()
    * and buttonBoardBindings() are the only methods called in this constructor
@@ -152,20 +145,12 @@ public class RobotContainer {
     .whenReleased(new InstantCommand(revolver::unstuckMode, revolver));
 
     // run revolver on external joystick x axis
-    joystick.triggerJoystickShortener(externalRightJoystick, 
-    joystick.bsJoystickShortener(bsExternalRightJoystick, 1))
-    .whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, false));
-    joystick.triggerJoystickShortener(externalLeftJoystick, 
-    joystick.bsJoystickShortener(bsExternalLeftJoystick, -1))
-    .whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, true));
+    joystick.getExternalRightJoystick().whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, false));
+    joystick.getExternalLeftJoystick().whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, true));
 
     // run intake on external joystick y axis
-    joystick.triggerJoystickShortener(externalUpJoystick, 
-    joystick.bsJoystickShortener(bsExternalUpJoystick, 1))
-    .whileActiveOnce(new RunIntake(intake, PowerConstants.IntakeOperator.val));
-    joystick.triggerJoystickShortener(externalDownJoystick, 
-    joystick.bsJoystickShortener(bsExternalDownJoystick, -1))
-    .whileActiveOnce(new RunIntake(intake, -PowerConstants.IntakeOperator.val));
+    joystick.getExternalUpJoystick().whileActiveOnce(new RunIntake(intake, PowerConstants.IntakeOperator.val));
+    joystick.getExternalDownJoystick().whileActiveOnce(new RunIntake(intake, -PowerConstants.IntakeOperator.val));
   }
 
   public void setDefaultCommands(){
