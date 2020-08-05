@@ -134,31 +134,41 @@ public class PaddedXbox extends XboxController{
 		return getPOV();
 	}
 
-	// ----------------------- BELOW IS PADDED BUTTON BOARD -------------------------------
+	// ----------------------- BELOW IS PADDED BUTTON BOARD CODE -------------------------------
 	private final ButtonBoard buttonBoard = new ButtonBoard();
+	private BooleanSupplier bsExternalRightJoystick;
+	private Trigger externalRightJoystick;
+	private BooleanSupplier bsExternalLeftJoystick;
+	private Trigger externalLeftJoystick;
+	private BooleanSupplier bsExternalDownJoystick;
+	private Trigger externalDownJoystick;
+	private BooleanSupplier bsExternalUpJoystick;
+	private Trigger externalUpJoystick;
+
+	public BooleanSupplier bsJoystickShortener(BooleanSupplier booleanSupplier, int x){
+		booleanSupplier = () -> buttonBoard.getJoystickX() == x;
+		return booleanSupplier;
+	}
+
+	public Trigger triggerJoystickShortener(Trigger trigger, BooleanSupplier booleanSupplier){
+		trigger = new Trigger(booleanSupplier);
+		return trigger;
+	}
 
 	public Trigger getExternalRightJoystick(){
-		BooleanSupplier bsExternalRightJoystick = () -> buttonBoard.getJoystickX() == 1;
-		Trigger externalRightJoystick = new Trigger(bsExternalRightJoystick);
-		return externalRightJoystick;
+	return this.triggerJoystickShortener(externalRightJoystick, this.bsJoystickShortener(bsExternalRightJoystick, 1));
+	}
+
+	public Trigger getExternalLeftJoystick(){
+	return this.triggerJoystickShortener(externalLeftJoystick, this.bsJoystickShortener(bsExternalLeftJoystick, 1));
 	}
 	
-	public Trigger getExternalLeftJoystick(){
-		BooleanSupplier bsExternalLeftJoystick = () -> buttonBoard.getJoystickX() == -1;
-		Trigger externalLeftJoystick = new Trigger(bsExternalLeftJoystick);
-		return externalLeftJoystick;
-	}
-
 	public Trigger getExternalUpJoystick(){
-		BooleanSupplier bsExternalUpJoystick = () -> buttonBoard.getJoystickY() == 1;
-		Trigger externalUpJoystick = new Trigger(bsExternalUpJoystick);
-		return externalUpJoystick;
-	}
-
+		return this.triggerJoystickShortener(externalUpJoystick, this.bsJoystickShortener(bsExternalUpJoystick, 1));
+		}
+		
 	public Trigger getExternalDownJoystick(){
-		BooleanSupplier bsExternalDownJoystick = () -> buttonBoard.getJoystickY() == -1;
-		Trigger externalDownJoystick = new Trigger(bsExternalDownJoystick);	  
-		return externalDownJoystick;
+	return this.triggerJoystickShortener(externalDownJoystick, this.bsJoystickShortener(bsExternalDownJoystick, 1));
 	}
-
+	
 }

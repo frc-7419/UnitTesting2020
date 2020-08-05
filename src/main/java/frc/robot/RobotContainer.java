@@ -48,7 +48,7 @@ public class RobotContainer {
   // PowerConstants.RevolverWithIntake.val);
   private final MoveForwardThenShoot defaultAuto = 
   new MoveForwardThenShoot(driveBase, shooter, revolver, loader);
-
+  
   /**
    * before this gets merged back into the dev branch, make sure that xboxControllerButtonBindings()
    * and buttonBoardBindings() are the only methods called in this constructor
@@ -71,7 +71,7 @@ public class RobotContainer {
    * rule of thumb: don't change manual button bindings.
    */
   private void xboxControllerButtonBindings() {
-    
+
     joystick.getXButtonValue()
     .whenPressed(new ToggleSlowMode(driveBase));
 
@@ -149,8 +149,9 @@ public class RobotContainer {
     joystick.getExternalLeftJoystick().whileActiveOnce(new RunRevolver(revolver, PowerConstants.RevolverButtonBoard.val, true));
 
     // run intake on external joystick y axis
-    joystick.getExternalDownJoystick().whileActiveOnce(new RunIntake(intake, -PowerConstants.IntakeOperator.val));
     joystick.getExternalUpJoystick().whileActiveOnce(new RunIntake(intake, PowerConstants.IntakeOperator.val));
+    joystick.getExternalDownJoystick().whileActiveOnce(new RunIntake(intake, -PowerConstants.IntakeOperator.val));
+    
   }
 
   public void setDefaultCommands(){
